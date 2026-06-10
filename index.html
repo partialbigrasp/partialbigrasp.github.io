@@ -13,6 +13,8 @@
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
   <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
 </head>
 <body>
 
@@ -22,11 +24,63 @@
       <div class="columns is-centered">
         <div class="column has-text-centered">
           <h1 class="title is-1 publication-title">PartialBiGrasp: Inferring Hidden Local Geometry for Bimanual Grasping from Partial Views</h1>
+            <div class="publication-links">
+              <!-- Code -->
+            <span class="link-block">
+            <a href="javascript:void(0);"
+                class="external-link button is-normal is-rounded is-dark">
+                <span class="icon">
+                <i class="fab fa-github"></i>
+                </span>
+                <span>Code (Coming Soon)</span>
+            </a>
+            </span>
+            </div>
         </div>
       </div>
     </div>
   </div>
 </section>
+
+<section class="section" style="background-color: rgb(255, 255, 255);">
+    <div class="container is-max-desktop">
+        <div class="columns is-centered">
+            <div class="column is-full-width has-text-centered">
+
+                <figure>
+                    <img src="./static/images/teaser.png"
+                         alt="PartialBiGrasp teaser"
+                         style="width:100%; height:auto;">
+
+                    <figcaption style="margin-top:12px; text-align:justify;">
+                        <strong>Figure 1.</strong>
+                        Partial observations hide grasp-relevant geometry and introduce deceptive grasp cues,
+                        often leading to unstable grasps, as denoted by the
+                        <span style="color:red;">red</span> grasps.
+                        PartialBiGrasp overcomes these challenges, shown as the
+                        <span style="color:green;">green</span> grasps,
+                        by reasoning about hidden local geometry to generate physically feasible dual-arm grasps.
+                    </figcaption>
+                </figure>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+    <section id="video" class="section" style="background-color: rgb(252, 252, 252);">
+        <div class="container is-max-desktop">
+            <div class="columns has-text-centered">
+                <div class="column is-full-width">
+                    <div class="columns is-centered video-container">
+                        <video controls muted poster="./static/images/vid-thumbnail.png" preload="none"
+                            src="./static/videos/video.mp4">
+                        </video>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
 <section class="section">
   <div class="container is-max-desktop">
@@ -60,5 +114,266 @@
   </div>
 </section>
 
+<section class="section">
+    <div class="container is-max-desktop">
+
+        <h2 class="title is-3 has-text-centered">Architecture</h2>
+
+        <!-- Main Pipeline -->
+        <div class="columns is-centered">
+            <div class="column is-full-width has-text-centered">
+
+                <img src="./static/images/pipeline.png"
+                     alt="Pipeline"
+                     style="width:100%; height:auto;">
+                
+                <p style="margin-top:12px; text-align:justify">
+                    <strong>Figure 2.</strong> Given a partial point cloud <i>P</i>, the Global Encoder
+                    produces a continuous object representation from which the Grasp Generation Module (<i>G</i>)
+                    predicts candidate single-arm grasps. High-graspability candidates are paired and scored by
+                    the Force Closure Module (<i>FC</i>) to identify analytically stable grasp pairs. Local
+                    geometry is captured by encoding gripper-frame point cloud crops (<i>P<sub>G</sub></i>) with
+                    the Local Encoder. Finally, a sampling-based optimizer uses local occupancy predictions
+                    (<i>occ<sub>l</sub></i>) to reduce collisions and improve contact quality, yielding
+                    force-closure-stable grasp pairs that are aware of hidden local geometry.
+                </p>
+            </div>
+        </div>
+
+        <hr style="margin: 2.5rem 0;">
+        <h4 class="title is-4 has-text-centered">Grasp Refinement</h4>
+
+        <!-- Secondary Architecture Figure -->
+        <div class="columns is-centered">
+            <div class="column is-full-width has-text-centered">
+
+                <img src="./static/images/refinement.png"
+                     alt="Network Architecture"
+                     style="width:auto; height:80%;">
+
+                <p style="margin-top:12px; text-align:justify;">
+                    <strong>Figure 3.</strong>
+                    Applied after grasp pairing, Local Occupancy Guided Refinement reasons about
+                    hidden local geometry, including thickness and surface continuation under
+                    occlusion, to update grasp poses in local regions. The resulting grasps exhibit
+                    fewer collisions while preserving the force-closure stability of the grasp pair.
+                    <span style="color:red;">Red</span> denotes the initial pose and
+                    <span style="color:green;">green</span> denotes the refined pose.
+                </p>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<section class="section">
+    <div class="container is-max-desktop">
+
+        <h2 class="title is-3 has-text-centered">Real-World Demo</h2>
+
+        <!-- Row 1 -->
+        <div class="columns">
+            <div class="column is-6">
+                <video autoplay loop muted playsinline style="width:100%;">
+                    <source src="./static/videos/briefcase.webm" type="video/webm">
+                </video>
+            </div>
+            <div class="column is-6">
+                <video autoplay loop muted playsinline style="width:100%;">
+                    <source src="./static/videos/stool.webm" type="video/webm">
+                </video>
+            </div>
+
+        </div>
+
+        <!-- Row 2 -->
+        <div class="columns">
+            <div class="column is-6">
+                <video autoplay loop muted playsinline style="width:100%;">
+                    <source src="./static/videos/chair.webm" type="video/webm">
+                </video>
+            </div>
+
+            <div class="column is-6">
+                <video autoplay loop muted playsinline style="width:100%;">
+                    <source src="./static/videos/pan.webm" type="video/webm">
+                </video>
+            </div>
+        </div>
+
+        <!-- Row 3 -->
+        <div class="columns">
+            <div class="column is-6">
+                <video autoplay loop muted playsinline style="width:100%;">
+                    <source src="./static/videos/tray.webm" type="video/webm">
+                </video>
+            </div>
+            <div class="column is-6">
+                <video autoplay loop muted playsinline style="width:100%;">
+                    <source src="./static/videos/bucket.webm" type="video/webm">
+                </video>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<section class="section" style="background-color:#fff;">
+    <div class="container is-max-desktop">
+
+        <h2 class="title is-2 has-text-centered">Quantitative Comparison</h2>
+
+        <p class="has-text-centered is-size-6 mb-6">
+          Comparison of baselines on evaluation datasets
+          (▲ Higher is better &nbsp;&nbsp; • &nbsp;&nbsp; ▼ Lower is better)
+        </p>
+
+        <div class="columns is-centered">
+            <div class="column is-10">
+                <h4 class="title is-5 mt-5">DG16M Dataset</h4>
+                <table class="table is-fullwidth is-striped">
+                    <thead>
+                        <tr>
+                            <th>Method</th>
+                            <th class="has-text-centered">FC (%) ▲</th>
+                            <th class="has-text-centered">GS (%) ▲</th>
+                            <th class="has-text-centered">PC (%) ▼</th>
+                            <th class="has-text-centered">Cov. ▲</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>ContactGraspNet + Attention Pairing</td>
+                            <td class="has-text-centered">21.10</td>
+                            <td class="has-text-centered">52.14</td>
+                            <td class="has-text-centered">47.41</td>
+                            <td class="has-text-centered">10.11</td>
+                        </tr>
+
+                        <tr>
+                            <td>ContactGraspNet + Classifier Pairing</td>
+                            <td class="has-text-centered">15.03</td>
+                            <td class="has-text-centered">50.05</td>
+                            <td class="has-text-centered">63.44</td>
+                            <td class="has-text-centered">9.42</td>
+                        </tr>
+
+                        <tr>
+                            <td>DAGDiff (Partial)</td>
+                            <td class="has-text-centered">22.35</td>
+                            <td class="has-text-centered">46.63</td>
+                            <td class="has-text-centered">49.19</td>
+                            <td class="has-text-centered">14.48</td>
+                        </tr>
+
+                        <tr>
+                            <td><b>Ours</b></td>
+                            <td class="has-text-centered"><b>55.16</b></td>
+                            <td class="has-text-centered"><b>67.87</b></td>
+                            <td class="has-text-centered"><b>17.48</b></td>
+                            <td class="has-text-centered"><b>16.96</b></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h4 class="title is-5 mt-6">Real-World Dataset</h4>
+                <table class="table is-fullwidth is-striped">
+                    <thead>
+                        <tr>
+                            <th>Method</th>
+                            <th class="has-text-centered">FC (%) ▲</th>
+                            <th class="has-text-centered">GS (%) ▲</th>
+                            <th class="has-text-centered">PC (%) ▼</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td>ContactGraspNet + Attention Pairing</td>
+                            <td class="has-text-centered">22.56</td>
+                            <td class="has-text-centered">65.04</td>
+                            <td class="has-text-centered">57.15</td>
+                        </tr>
+
+                        <tr>
+                            <td>ContactGraspNet + Classifier Pairing</td>
+                            <td class="has-text-centered">22.22</td>
+                            <td class="has-text-centered">62.60</td>
+                            <td class="has-text-centered">63.44</td>
+                        </tr>
+
+                        <tr>
+                            <td>DAGDiff (Partial)</td>
+                            <td class="has-text-centered">17.47</td>
+                            <td class="has-text-centered">62.47</td>
+                            <td class="has-text-centered">59.27</td>
+                        </tr>
+
+                        <tr>
+                            <td>RecGen + DAGDiff (Full)</td>
+                            <td class="has-text-centered">20.51</td>
+                            <td class="has-text-centered">64.33</td>
+                            <td class="has-text-centered">53.20</td>
+                        </tr>
+
+                        <tr>
+                            <td>Single GraspGen + VLM</td>
+                            <td class="has-text-centered">22.96</td>
+                            <td class="has-text-centered">66.93</td>
+                            <td class="has-text-centered">50.16</td>
+                        </tr>
+
+                        <tr>
+                            <td><b>Ours</b></td>
+                            <td class="has-text-centered"><b>51.06</b></td>
+                            <td class="has-text-centered"><b>81.54</b></td>
+                            <td class="has-text-centered"><b>38.80</b></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+
+        <p class="content has-text-justified mt-5 mb-3">
+            <strong>Baselines.</strong> ContactGraspNet variants generate single-arm grasps and pair them
+            using either attention-based or classifier-based pairing. DAGDiff (Partial) is trained directly
+            on partial observations, while RecGen + DAGDiff reconstructs complete geometry using RecGen
+            before applying DAGDiff trained on full object point clouds. Single GraspGen + VLM generates
+            candidate single-arm grasps and performs grasp pairing using VLM-predicted grasp regions.
+        </p>
+
+        <p class="content has-text-justified mt-4 mb-5">
+            <strong>Metrics and Benchmarks.</strong> We evaluate all methods on <i>DG16M</i> and a
+            <i>real-world dataset</i> consisting of 11 large everyday objects captured from multiple
+            viewpoints using an Intel RealSense D455 camera, each having a corresponding ground-truth mesh. 
+            Metrics include <i>Force Closure (FC)</i>, which measures the
+            analytical stability of predicted grasp pairs, <i>Grasp Success Rate (GS)</i>, which measures
+            successful object lifting in simulation, <i>Pair Collision Rate (PC)</i>, which quantifies
+            collisions between predicted grasp pairs and the object geometry, and <i>Coverage (Cov.)</i>,
+            which measures how well successful force-closure grasp pairs span the object's graspable
+            regions. Our method consistently produces higher-quality dual-arm grasp pairs across both
+            benchmarks, achieving improved stability, diversity, and collision avoidance. Real-world 
+            demonstrations indicate effective transfer from simulation to 
+            physical robot execution on previously unseen objects.
+        </p>
+    </div>
+</section>
+<footer class="footer" style="background-color: rgba(136, 136, 136, 0.116);">
+    <div class="container">
+        <div class="columns is-centered">
+            <div class="column is-8">
+                <div class="content">
+                    <p>
+                        This website is licensed under a <a rel="license"
+                            href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+                            Commons Attribution-Share Alike 4.0 International License</a>. It is borrowing this <a
+                            href="https://github.com/nerfies/nerfies.github.io">source code.</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
 </body>
 </html>

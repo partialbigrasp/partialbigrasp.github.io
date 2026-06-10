@@ -124,3 +124,22 @@ body {
 #interpolation-image-wrapper img {
   border-radius: 5px;
 }
+
+.table {
+    margin: 0 auto;
+    font-size: 1rem;
+}
+
+.table th {
+    text-align: center;
+    vertical-align: middle;
+}
+
+.table th:first-child,
+.table td:first-child {
+    text-align: left;
+}
+
+.table td {
+    vertical-align: middle;
+}
