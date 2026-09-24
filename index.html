@@ -19,12 +19,43 @@
 <body>
 
 <section class="hero">
-  <div class="hero-body">
+  <div class="hero-body" style="padding-bottom: 0;">
     <div class="container is-max-desktop">
       <div class="columns is-centered">
         <div class="column has-text-centered">
           <h1 class="title is-1 publication-title">PartialBiGrasp: Inferring Hidden Local Geometry for Bimanual Grasping from Partial Views</h1>
+            <div class="is-size-5 publication-venue" style="margin: 0 auto 1rem;">
+              <span class="tag is-medium is-rounded is-link is-light"
+                    style="border: 2px solid #485fc7;"><strong>Accepted at CoRL 2026</strong></span>
+            </div>
+
+            <div class="is-size-5 publication-authors">
+              <span class="author-block"><a href="https://ayush-kaura.github.io/">Ayush Kaura</a><sup>1*</sup>,</span>
+              <span class="author-block"><a href="https://wig-nesh.github.io/">Vignesh Vembar</a><sup>1*</sup>,</span>
+              <span class="author-block"><a href="https://faizalkarim280280.github.io/">Md Faizal Karim</a><sup>1</sup>,</span>
+              <span class="author-block"><a href="https://sites.google.com/site/keshabpatra19">Keshab Patra</a><sup>1</sup>,</span>
+              <span class="author-block"><a href="https://scholar.google.com/citations?user=QDuPGHwAAAAJ">K Madhava Krishna</a><sup>1</sup></span>
+            </div>
+
+            <div class="is-size-5 publication-authors">
+              <span class="author-block"><sup>1</sup>Robotics Research Center, IIIT Hyderabad</span>
+            </div>
+
+            <div class="is-size-6 publication-authors" style="margin-bottom: 1rem;">
+              <span class="author-block"><sup>*</sup>Equal contribution</span>
+            </div>
             <div class="publication-links">
+              <!-- arXiv -->
+            <span class="link-block">
+                <a href="https://arxiv.org/abs/2608.19188"
+                target="_blank"
+                class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                        <i class="ai ai-arxiv"></i>
+                    </span>
+                    <span>arXiv</span>
+                </a>
+            </span>
               <!-- Code -->
             <span class="link-block">
                 <a href="https://github.com/partialbigrasp/codebase/tree/main"
@@ -37,13 +68,16 @@
                 </a>
             </span>
             </div>
+            <p class="is-size-6 has-text-grey" style="margin-top: 0.75rem;">
+              <em>More updates coming soon!</em>
+            </p>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<section class="section" style="background-color: rgb(255, 255, 255);">
+<section class="section" style="background-color: rgb(255, 255, 255); padding-top: 1rem;">
     <div class="container is-max-desktop">
         <div class="columns is-centered">
             <div class="column is-full-width has-text-centered">
@@ -344,7 +378,7 @@
             candidate single-arm grasps and performs grasp pairing using VLM-predicted grasp regions.
         </p>
 
-        <p class="content has-text-justified mt-4 mb-5">
+        <p class="content has-text-justified mt-4 mb-0">
             <strong>Metrics and Benchmarks.</strong> We evaluate all methods on <i>DG16M</i> and a
             <i>real-world dataset</i> consisting of 11 large everyday objects captured from multiple
             viewpoints using an Intel RealSense D455 camera, each having a corresponding ground-truth mesh. 
@@ -360,6 +394,20 @@
         </p>
     </div>
 </section>
+
+<section class="section" id="BibTeX" style="padding-top: 0;">
+    <div class="container is-max-desktop content">
+        <h2 class="title">BibTeX</h2>
+        <pre><code>@article{partialbigrasp2026,
+  title={PartialBiGrasp: Inferring Hidden Local Geometry for Bimanual Grasping from Partial Views},
+  author={Kaura, Ayush and Vembar, Vignesh and Karim, Md Faizal and Patra, Keshab and Krishna, K Madhava},
+  journal={arXiv preprint arXiv:2608.19188},
+  year={2026}
+}
+</code></pre>
+    </div>
+</section>
+
 <footer class="footer" style="background-color: rgba(136, 136, 136, 0.116);">
     <div class="container">
         <div class="columns is-centered">
@@ -371,6 +419,7 @@
                             Commons Attribution-Share Alike 4.0 International License</a>. It is borrowing this <a
                             href="https://github.com/nerfies/nerfies.github.io">source code.</a>
                     </p>
+                    <p class="has-text-grey">Last updated: September 24, 2026</p>
                 </div>
             </div>
         </div>
